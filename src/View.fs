@@ -32,21 +32,40 @@ let private washiBackdrop () =
     ]
 
 // ------------------------------------------------------------
-//  CategoryButton（トップ画面の丸いジャンルボタン）
+//  DifficultyButton（難易度ボタン：押すとそのコースが開始）
 // ------------------------------------------------------------
-let categoryButton (index: int) (category: Category) (dispatch: Msg -> unit) : ReactElement =
+let difficultyButton (category: Category) (difficulty: Difficulty) (dispatch: Msg -> unit) : ReactElement =
     Html.button [
-        prop.className [ "category-button"; $"cat-{Category.themeClass category}" ]
+        prop.className [ "difficulty-button"; $"diff-{Difficulty.themeClass difficulty}" ]
+        prop.onClick (fun _ -> dispatch (StartQuiz(category, difficulty)))
+        prop.children [
+            Html.span [ prop.className "diff-name"; prop.text (Difficulty.displayName difficulty) ]
+            Html.span [ prop.className "diff-desc"; prop.text (Difficulty.description difficulty) ]
+        ]
+    ]
+
+// ------------------------------------------------------------
+//  CategoryCard（丸いジャンルカード ＋ 直下に難易度ボタン）
+// ------------------------------------------------------------
+let categoryCard (index: int) (category: Category) (dispatch: Msg -> unit) : ReactElement =
+    Html.div [
+        prop.className "category-block"
         // 順番にふわっと出すアニメーション用の遅延
         prop.style [ style.animationDelay (System.TimeSpan.FromMilliseconds(float (150 * (index + 1)))) ]
-        prop.onClick (fun _ -> dispatch (StartQuiz category))
         prop.children [
-            Html.span [ prop.className "cat-icon"; prop.text (Category.icon category) ]
-            Html.span [ prop.className "cat-title"; prop.text (Category.displayName category) ]
-            Html.span [ prop.className "cat-desc"; prop.text (Category.description category) ]
-            Html.span [
-                prop.className "cat-count"
-                prop.text (sprintf "全%d問" (QuizData.questionCount category))
+            // 丸いジャンルの意匠（デザインは従来を維持）
+            Html.div [
+                prop.className [ "category-emblem"; $"cat-{Category.themeClass category}" ]
+                prop.children [
+                    Html.span [ prop.className "cat-icon"; prop.text (Category.icon category) ]
+                    Html.span [ prop.className "cat-title"; prop.text (Category.displayName category) ]
+                    Html.span [ prop.className "cat-desc"; prop.text (Category.description category) ]
+                ]
+            ]
+            // 難易度ボタン（初級 / 中級 / 上級）
+            Html.div [
+                prop.className "difficulty-row"
+                prop.children (Difficulty.all |> List.map (fun d -> difficultyButton category d dispatch))
             ]
         ]
     ]
@@ -65,13 +84,13 @@ let topScreen (dispatch: Msg -> unit) : ReactElement =
                     Html.h1 [ prop.className "app-title"; prop.text "戦国クイズ絵巻" ]
                     Html.p [
                         prop.className "app-subtitle"
-                        prop.text "武将・合戦・城から選んで、戦国知識を試そう"
+                        prop.text "ジャンルと難易度を選んで、戦国知識を試そう"
                     ]
                 ]
             ]
             Html.div [
                 prop.className "category-list"
-                prop.children (Category.all |> List.mapi (fun i c -> categoryButton i c dispatch))
+                prop.children (Category.all |> List.mapi (fun i c -> categoryCard i c dispatch))
             ]
         ]
     ]
@@ -172,6 +191,9 @@ let quizScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
     let categoryName =
         model.Category |> Option.map Category.displayName |> Option.defaultValue ""
 
+    let difficultyName =
+        model.Difficulty |> Option.map Difficulty.displayName |> Option.defaultValue ""
+
     let themeClass =
         model.Category |> Option.map Category.themeClass |> Option.defaultValue "busho"
 
@@ -198,7 +220,7 @@ let quizScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
                             prop.children [
                                 Html.span [
                                     prop.className "quiz-genre"
-                                    prop.text $"{categoryName}クイズ"
+                                    prop.text $"{categoryName}クイズ｜{difficultyName}"
                                 ]
                                 Html.span [
                                     prop.className "quiz-count"
@@ -276,6 +298,9 @@ let resultScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
     let categoryName =
         model.Category |> Option.map Category.displayName |> Option.defaultValue ""
 
+    let difficultyName =
+        model.Difficulty |> Option.map Difficulty.displayName |> Option.defaultValue ""
+
     let total = List.length model.Questions
     let rank = calculateRank model.Score total
     let pct = calculatePercentage model.Score total
@@ -287,7 +312,7 @@ let resultScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
                 prop.className "result-card"
                 prop.children [
                     Html.div [ prop.className "result-scroll-top"; prop.text "戦 果 発 表" ]
-                    Html.p [ prop.className "result-genre"; prop.text $"{categoryName}クイズ" ]
+                    Html.p [ prop.className "result-genre"; prop.text $"{categoryName}クイズ｜{difficultyName}" ]
 
                     // ランク（強調表示）
                     Html.div [
@@ -328,7 +353,7 @@ let resultScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
                             Html.button [
                                 prop.className "btn btn-primary"
                                 prop.onClick (fun _ -> dispatch RestartQuiz)
-                                prop.text "同じジャンルでもう一度"
+                                prop.text "同じジャンル・難易度でもう一度"
                             ]
                             Html.button [
                                 prop.className "btn btn-ghost"

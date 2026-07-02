@@ -369,6 +369,76 @@ let busho: Question list =
         Options = [ "細川藤孝"; "細川忠興"; "三条西実枝"; "近衛前久" ]
         Answer = "細川藤孝"
         Explanation = "細川幽斎。和歌・古典に通じた教養人として知られ、戦国から江戸初期にかけて活躍しました。"
+        Difficulty = "上級" }
+
+      { Id = 51
+        Text = "「表裏比興の者」とも評され、上田城で徳川の大軍を二度にわたり退けたとも伝わる信濃の武将。真田信繁（幸村）の父にあたる。この武将は誰？"
+        Options = [ "真田昌幸"; "真田信之"; "村上義清"; "小笠原長時" ]
+        Answer = "真田昌幸"
+        Explanation = "真田昌幸は知略で知られ、上田城で徳川勢を退けたと伝わります。真田信繁（幸村）の父にあたります。"
+        Difficulty = "上級" }
+
+      { Id = 52
+        Text = "九州の勇将として知られ、関ヶ原で西軍について改易されたが、後に旧領の柳川に大名として復帰したと伝わる人物。この武将は誰？"
+        Options = [ "立花宗茂"; "鍋島直茂"; "加藤清正"; "小早川隆景" ]
+        Answer = "立花宗茂"
+        Explanation = "立花宗茂は武勇で知られ、改易後に旧領へ復帰したと伝わる珍しい経歴の武将です。"
+        Difficulty = "上級" }
+
+      { Id = 53
+        Text = "石田三成が高禄で招いたと伝わる家臣で、「三成に過ぎたるもの」と評されたともされる人物。この武将は誰？"
+        Options = [ "島左近"; "大谷吉継"; "蒲生郷舎"; "舞兵庫" ]
+        Answer = "島左近"
+        Explanation = "島左近（清興）は石田三成に仕えた武将で、その武勇を高く評価されたと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 54
+        Text = "今川義元を補佐したと伝わる軍師的な僧で、外交や内政にも関与したとされる人物。この人物は誰？"
+        Options = [ "太原雪斎"; "快川紹喜"; "南光坊天海"; "安国寺恵瓊" ]
+        Answer = "太原雪斎"
+        Explanation = "太原雪斎は今川義元を補佐した僧として知られ、今川家の政治・外交を支えたと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 55
+        Text = "出雲を拠点に下剋上で勢力を広げ、「謀聖」とも称されたとされる中国地方の大名。尼子氏の礎を築いた。この武将は誰？"
+        Options = [ "尼子経久"; "大内義隆"; "山名祐豊"; "赤松政則" ]
+        Answer = "尼子経久"
+        Explanation = "尼子経久は謀略にも長けたとされ、出雲を中心に尼子氏の勢力を大きく広げたと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 56
+        Text = "周防・長門（山口県）を治めて栄華を誇り、いわゆる大内文化を栄えさせたが、家臣の謀反によって滅んだとされる大名。この武将は誰？"
+        Options = [ "大内義隆"; "尼子晴久"; "大友義鑑"; "少弐冬尚" ]
+        Answer = "大内義隆"
+        Explanation = "大内義隆は文化を保護し栄えましたが、家臣・陶晴賢の謀反により滅んだとされます。"
+        Difficulty = "上級" }
+
+      { Id = 57
+        Text = "主君・大内義隆に背いて実権を握ったが、厳島の戦いで毛利元就に敗れたとされる武将。この武将は誰？"
+        Options = [ "陶晴賢"; "杉重矩"; "内藤興盛"; "江良房栄" ]
+        Answer = "陶晴賢"
+        Explanation = "陶晴賢は大内家の実権を握りましたが、1555年の厳島の戦いで毛利元就に敗れたとされます。"
+        Difficulty = "上級" }
+
+      { Id = 58
+        Text = "畿内で権勢を振るい、一時は将軍をしのぐほどの勢力を築いたとされる人物。松永久秀を家臣としたとも伝わる。この武将は誰？"
+        Options = [ "三好長慶"; "細川晴元"; "畠山高政"; "六角義賢" ]
+        Answer = "三好長慶"
+        Explanation = "三好長慶は畿内で大きな勢力を築き、室町幕府をしのぐ権勢を誇ったとされます。"
+        Difficulty = "上級" }
+
+      { Id = 59
+        Text = "真田昌幸の子で、関ヶ原では父・弟と別れて徳川方につき、真田家の存続に寄与したと伝わる人物。この武将は誰？"
+        Options = [ "真田信之"; "真田信繁"; "依田信蕃"; "保科正光" ]
+        Answer = "真田信之"
+        Explanation = "真田信之は徳川方につき、後に松代藩主となって真田家を存続させたと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 60
+        Text = "織田信長に仕えた水軍の将で、鉄で装甲した大型船（鉄甲船）を建造したとも伝わる人物。この武将は誰？"
+        Options = [ "九鬼嘉隆"; "村上武吉"; "来島通総"; "小西行長" ]
+        Answer = "九鬼嘉隆"
+        Explanation = "九鬼嘉隆は織田水軍を率いた将で、鉄甲船を用いて毛利水軍と戦ったとも伝わります。"
         Difficulty = "上級" } ]
 
 
@@ -728,6 +798,76 @@ let battle: Question list =
         Options = [ "天王寺の戦い"; "石山合戦"; "長島一向一揆"; "槇島城の戦い" ]
         Answer = "天王寺の戦い"
         Explanation = "天王寺の戦いは石山合戦中の激戦の一つで、信長自身も負傷したとも伝えられます。"
+        Difficulty = "上級" }
+
+      { Id = 51
+        Text = "1600年、関ヶ原の戦いの直前、鳥居元忠が守る城が西軍に攻められ落城したとされる、京都の城をめぐる戦いはどれ？"
+        Options = [ "伏見城の戦い"; "大津城の戦い"; "田辺城の戦い"; "長谷堂城の戦い" ]
+        Answer = "伏見城の戦い"
+        Explanation = "伏見城の戦いでは、徳川方の鳥居元忠が籠城しましたが落城したと伝わり、関ヶ原の前哨戦の一つとされます。"
+        Difficulty = "上級" }
+
+      { Id = 52
+        Text = "1540〜1541年頃、毛利元就が尼子氏の大軍を退けたとされる、安芸の本拠をめぐる戦いはどれ？"
+        Options = [ "吉田郡山城の戦い"; "月山富田城の戦い"; "厳島の戦い"; "手取川の戦い" ]
+        Answer = "吉田郡山城の戦い"
+        Explanation = "吉田郡山城の戦いで毛利元就が尼子の大軍を退けたとされ、毛利氏台頭の一因になったと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 53
+        Text = "1600年、出羽で最上義光らが上杉方（直江兼続の軍）の攻勢を退けたとされる、「北の関ヶ原」とも呼ばれる戦いはどれ？"
+        Options = [ "長谷堂城の戦い"; "摺上原の戦い"; "人取橋の戦い"; "伏見城の戦い" ]
+        Answer = "長谷堂城の戦い"
+        Explanation = "長谷堂城の戦い（慶長出羽合戦）では、最上義光らが上杉方の攻撃を退けたとされ、「北の関ヶ原」とも呼ばれます。"
+        Difficulty = "上級" }
+
+      { Id = 54
+        Text = "1600年、教養人としても知られる細川幽斎（藤孝）が籠城したと伝わる、丹後の城をめぐる戦いはどれ？"
+        Options = [ "田辺城の戦い"; "大津城の戦い"; "伏見城の戦い"; "杭瀬川の戦い" ]
+        Answer = "田辺城の戦い"
+        Explanation = "田辺城の戦いでは細川幽斎が籠城し、その助命に朝廷が動いたとも伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 55
+        Text = "1600年、京極高次が籠城して西軍の兵力を引きつけ、関ヶ原本戦に影響したとも伝わる、近江の城をめぐる戦いはどれ？"
+        Options = [ "大津城の戦い"; "田辺城の戦い"; "伏見城の戦い"; "長谷堂城の戦い" ]
+        Answer = "大津城の戦い"
+        Explanation = "大津城の戦いで京極高次が籠城し、西軍の一部を足止めしたとされます。"
+        Difficulty = "上級" }
+
+      { Id = 56
+        Text = "1600年、関ヶ原の本戦前日、島左近らが東軍を挑発して破ったとも伝わる小規模な前哨戦はどれ？"
+        Options = [ "杭瀬川の戦い"; "長良川の戦い"; "一言坂の戦い"; "姉川の戦い" ]
+        Answer = "杭瀬川の戦い"
+        Explanation = "杭瀬川の戦いは関ヶ原本戦の前哨戦とされ、西軍の島左近らが東軍を破ったとも伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 57
+        Text = "1584年、前田利家が佐々成政の攻撃を退けたとされる、能登・越中方面での城をめぐる戦いはどれ？"
+        Options = [ "末森城の戦い"; "手取川の戦い"; "神流川の戦い"; "三増峠の戦い" ]
+        Answer = "末森城の戦い"
+        Explanation = "末森城の戦いでは、前田利家が佐々成政の攻撃を退けたとされ、両者の対立を象徴する戦いとされます。"
+        Difficulty = "上級" }
+
+      { Id = 58
+        Text = "1590年の小田原征伐の際、豊臣方が北条氏の関東の支城を攻め落としたとされる戦いはどれ？"
+        Options = [ "八王子城の戦い"; "韮山城の戦い"; "忍城の戦い"; "神流川の戦い" ]
+        Answer = "八王子城の戦い"
+        Explanation = "八王子城の戦いでは、小田原征伐の一環として豊臣方が北条方の支城を攻め落としたとされます。"
+        Difficulty = "上級" }
+
+      { Id = 59
+        Text = "1590年の小田原征伐の際、北条氏規が籠城して長く持ちこたえたとされる、伊豆の城をめぐる戦いはどれ？"
+        Options = [ "韮山城の戦い"; "八王子城の戦い"; "忍城の戦い"; "小田原征伐" ]
+        Answer = "韮山城の戦い"
+        Explanation = "韮山城の戦いでは、北条氏規が少数で籠城し、長期にわたり持ちこたえたと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 60
+        Text = "1580年、織田方に背いた荒木村重方の拠点をめぐり、摂津で行われたとされる戦いはどれ？"
+        Options = [ "花隈城の戦い"; "有岡城の戦い"; "天王寺の戦い"; "石山合戦" ]
+        Answer = "花隈城の戦い"
+        Explanation = "花隈城の戦いは、荒木村重方の拠点をめぐる戦いで、織田方の池田恒興らが攻略したとされます。"
         Difficulty = "上級" } ]
 
 
@@ -1087,23 +1227,101 @@ let castle: Question list =
         Options = [ "盛岡城"; "久保田城"; "仙台城"; "山形城" ]
         Answer = "盛岡城"
         Explanation = "盛岡城は南部氏が築いた城で、後に盛岡藩の政治の中心となりました。"
+        Difficulty = "上級" }
+
+      { Id = 51
+        Text = "伊東氏と島津氏が長く争奪したと伝わる、日向（宮崎県）の城はどれ？"
+        Options = [ "飫肥城"; "佐土原城"; "都於郡城"; "鹿児島城" ]
+        Answer = "飫肥城"
+        Explanation = "飫肥城（おびじょう）は日向の城で、伊東氏と島津氏が長く争奪したと伝わります。"
+        Difficulty = "上級" }
+
+      { Id = 52
+        Text = "寺沢広高が築いたとされ、「舞鶴城」とも呼ばれる海沿いの肥前（佐賀県）の城はどれ？"
+        Options = [ "唐津城"; "名護屋城"; "佐賀城"; "平戸城" ]
+        Answer = "唐津城"
+        Explanation = "唐津城は寺沢広高が築いたとされ、海に臨む立地から「舞鶴城」とも呼ばれます。"
+        Difficulty = "上級" }
+
+      { Id = 53
+        Text = "松倉氏が築いたとされる肥前（長崎県）の城はどれ？なお、後の島原の乱は戦国時代より後の出来事とされる。"
+        Options = [ "島原城"; "原城"; "佐賀城"; "平戸城" ]
+        Answer = "島原城"
+        Explanation = "島原城は松倉氏が築いたとされる城です。後の島原の乱（江戸初期）の舞台となった地域として知られます。"
+        Difficulty = "上級" }
+
+      { Id = 54
+        Text = "大友氏ゆかりの豊後（大分県）府内に築かれ、後に整備されたとされる城はどれ？"
+        Options = [ "府内城"; "臼杵城"; "岡城"; "中津城" ]
+        Answer = "府内城"
+        Explanation = "府内城は豊後府内に築かれた城で、大友氏の本拠地であった地に位置します。"
+        Difficulty = "上級" }
+
+      { Id = 55
+        Text = "前田利長が築いたとされる、越中（富山県）の城はどれ？"
+        Options = [ "高岡城"; "富山城"; "魚津城"; "金沢城" ]
+        Answer = "高岡城"
+        Explanation = "高岡城は加賀前田家の前田利長が築いたとされる城で、越中に位置します。"
+        Difficulty = "上級" }
+
+      { Id = 56
+        Text = "柴田勝家の一族が築いたとも伝わり、現存天守を持つとされる越前（福井県）の城はどれ？"
+        Options = [ "丸岡城"; "北ノ庄城"; "一乗谷城"; "越前大野城" ]
+        Answer = "丸岡城"
+        Explanation = "丸岡城は柴田勝家の一族・柴田勝豊が築いたとも伝わり、現存天守を持つ城として知られます。"
+        Difficulty = "上級" }
+
+      { Id = 57
+        Text = "加藤嘉明が築いたとされ、現存天守を持つ伊予（愛媛県）の城はどれ？"
+        Options = [ "松山城"; "今治城"; "宇和島城"; "湯築城" ]
+        Answer = "松山城"
+        Explanation = "伊予松山城は加藤嘉明が築いたとされ、山頂に現存天守を持つ城として知られます。"
+        Difficulty = "上級" }
+
+      { Id = 58
+        Text = "生駒氏が築いたとされ、堀に海水を引き込む「海城」として知られる讃岐（香川県）の城はどれ？（備中高松城とは別の城）"
+        Options = [ "高松城"; "丸亀城"; "今治城"; "引田城" ]
+        Answer = "高松城"
+        Explanation = "讃岐高松城は生駒氏が築いたとされる海城で、堀に海水を引き込む構造で知られます。"
+        Difficulty = "上級" }
+
+      { Id = 59
+        Text = "徳川家康が生まれたと伝わる、三河（愛知県）の城はどれ？"
+        Options = [ "岡崎城"; "浜松城"; "清洲城"; "吉田城" ]
+        Answer = "岡崎城"
+        Explanation = "岡崎城は徳川家康が生まれたと伝わる城で、松平氏（徳川氏）ゆかりの城として知られます。"
+        Difficulty = "上級" }
+
+      { Id = 60
+        Text = "1590年の小田原征伐の際、豊臣秀吉が短期間で築いたとされ、「一夜城」とも呼ばれる相模（神奈川県）の城はどれ？"
+        Options = [ "石垣山城"; "小田原城"; "韮山城"; "八王子城" ]
+        Answer = "石垣山城"
+        Explanation = "石垣山城は小田原征伐の際に秀吉が築いたとされ、短期間で築いたことから「一夜城」とも呼ばれます。"
         Difficulty = "上級" } ]
 
 
 // ------------------------------------------------------------
 //  データアクセス関数
 //  ★将来 Supabase / Firebase / 外部API に置き換える場合は、
-//    この getQuestions の中身だけを差し替えればよい設計です。
+//    この関数群の中身だけを差し替えればよい設計です。
 // ------------------------------------------------------------
-let getQuestions (category: Category) : Question list =
+
+/// カテゴリ内の全問題（初級・中級・上級すべて）を返す
+let allOfCategory (category: Category) : Question list =
     match category with
     | Busho -> busho
     | Battle -> battle
     | Castle -> castle
 
-/// カテゴリの問題数（トップ画面の「全◯問」表示などに利用）
-let questionCount (category: Category) : int =
-    getQuestions category |> List.length
+/// 指定カテゴリ・指定難易度の問題だけを返す（＝1コース分の20問）
+/// 論理的には quizData[category][difficulty] に相当します。
+let getQuestions (category: Category) (difficulty: Difficulty) : Question list =
+    let label = Difficulty.displayName difficulty
+    allOfCategory category |> List.filter (fun q -> q.Difficulty = label)
+
+/// 指定コース（カテゴリ×難易度）の問題数（トップ画面の表示などに利用）
+let questionCount (category: Category) (difficulty: Difficulty) : int =
+    getQuestions category difficulty |> List.length
 
 // ------------------------------------------------------------
 //  開発用：クイズデータ検証（本番表示には影響しません）
@@ -1115,8 +1333,13 @@ let questionCount (category: Category) : int =
 //  結果は文字列リストで返し、App 側で console に出力します。
 // ------------------------------------------------------------
 let validateQuizData () : string list =
-    let checkCategory (name: string) (questions: Question list) : string list =
+    // 1コース（カテゴリ×難易度）の20問を検証する
+    let checkCourse (category: Category) (difficulty: Difficulty) : string list =
+        let name = sprintf "%s%s" (Category.displayName category) (Difficulty.displayName difficulty)
+        let questions = getQuestions category difficulty
         let count = List.length questions
+        let countMsg =
+            sprintf "  [%s] 問題数: %d%s" name count (if count = 20 then "" else " ← 20でない！")
         let idDup =
             questions
             |> List.countBy (fun q -> q.Id)
@@ -1137,19 +1360,25 @@ let validateQuizData () : string list =
             |> List.map (fun q -> sprintf "  [%s] answerがoptionsに無い: id=%d" name q.Id)
         let emptyFields =
             questions
-            |> List.filter (fun q -> q.Text = "" || q.Explanation = "")
-            |> List.map (fun q -> sprintf "  [%s] question/explanationが空: id=%d" name q.Id)
-        let countMsg = sprintf "  [%s] 問題数: %d" name count
+            |> List.filter (fun q -> q.Text = "" || q.Explanation = "" || q.Difficulty = "")
+            |> List.map (fun q -> sprintf "  [%s] question/explanation/difficultyが空: id=%d" name q.Id)
         countMsg :: (idDup @ textDup @ badOptions @ answerNotInOptions @ emptyFields)
 
-    let results =
-        [ "=== 戦国クイズ絵巻 データ検証 ==="
-          yield! checkCategory "武将" busho
-          yield! checkCategory "合戦" battle
-          yield! checkCategory "城" castle ]
+    let courseResults =
+        [ for category in Category.all do
+            for difficulty in Difficulty.all do
+                yield! checkCourse category difficulty ]
+
+    let results = "=== 戦国クイズ絵巻 データ検証（9コース×20問）===" :: courseResults
 
     let problems =
-        results
-        |> List.filter (fun s -> s.Contains "重複" || s.Contains "でない" || s.Contains "無い" || s.Contains "空")
+        courseResults
+        |> List.filter (fun s ->
+            s.Contains "重複" || s.Contains "でない" || s.Contains "無い" || s.Contains "空")
 
-    results @ [ (if List.isEmpty problems then "✅ 問題は見つかりませんでした" else sprintf "⚠️ %d件の問題があります" (List.length problems)) ]
+    let total = Category.all |> List.sumBy (fun c -> List.length (allOfCategory c))
+
+    results
+    @ [ sprintf "  合計問題数: %d" total
+        (if List.isEmpty problems then "✅ 問題は見つかりませんでした"
+         else sprintf "⚠️ %d件の問題があります" (List.length problems)) ]
