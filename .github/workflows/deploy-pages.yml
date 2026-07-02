@@ -50,6 +50,9 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # リポジトリで Pages が未設定でも、Actions から自動で有効化する
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
