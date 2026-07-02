@@ -62,7 +62,9 @@ type Question =
       /// 正解の選択肢（Options のいずれかと一致する文字列）
       Answer: string
       /// 解説文
-      Explanation: string }
+      Explanation: string
+      /// 難易度（"初級" / "中級" / "上級"）。将来の難易度選択機能で利用予定。
+      Difficulty: string }
 
 /// 表示中の画面
 type Screen =

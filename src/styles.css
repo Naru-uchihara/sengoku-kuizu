@@ -255,6 +255,18 @@ body {
   max-width: 12em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
+.cat-count {
+  margin-top: 2px;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(230, 199, 102, 0.55);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
 
 /* ============================================================
    クイズ画面
