@@ -6,6 +6,10 @@ import { defineConfig } from "vite";
 export default defineConfig({
   root: ".",
   publicDir: "public",
+  // 相対パスで出力。GitHub Pages のサブパス
+  // (https://<user>.github.io/sengoku-kuizu/) でもローカルでも
+  // アセットが正しく解決されます。
+  base: "./",
   server: {
     port: 5173,
     host: true,

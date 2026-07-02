@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+# 戦国クイズ絵巻を GitHub Pages に公開するワークフロー。
+# Fable(F#→JS) でコンパイルし、Vite でビルドした dist/ を Pages へデプロイします。
+
+on:
+  push:
+    branches:
+      - main
+      - claude/sengoku-quiz-game-aeqpll
+  workflow_dispatch: # 手動実行も可能
+
+# GITHUB_TOKEN に Pages 公開に必要な権限を付与
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時実行は最新のものだけを残す（実行中のデプロイはキャンセルしない）
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Restore Fable (dotnet tool)
+        run: dotnet tool restore
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build (Fable + Vite)
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
