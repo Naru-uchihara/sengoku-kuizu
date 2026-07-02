@@ -15,6 +15,8 @@ type Model =
       Screen: Screen
       /// 選択中のジャンル
       Category: Category option
+      /// 選択中の難易度
+      Difficulty: Difficulty option
       /// 今回の挑戦で出題する問題（シャッフル済み・選択肢もシャッフル済み）
       Questions: Question list
       /// 現在の問題番号（0 始まり）
@@ -30,7 +32,7 @@ type Model =
 
 /// 状態を変化させるメッセージ（＝ユーザー操作や画面遷移のトリガー）
 type Msg =
-    | StartQuiz of Category      // ジャンルを選んでクイズ開始
+    | StartQuiz of Category * Difficulty  // ジャンル・難易度を選んでクイズ開始
     | SelectAnswer of string     // 選択肢を選ぶ
     | NextQuestion               // 次の問題へ（最終問なら結果画面へ）
     | RestartQuiz                // 同じジャンルでもう一度
@@ -95,6 +97,7 @@ let calculateRank (score: int) (total: int) : Rank =
 let private topState =
     { Screen = Top
       Category = None
+      Difficulty = None
       Questions = []
       CurrentIndex = 0
       Score = 0
@@ -104,16 +107,17 @@ let private topState =
 
 let init () : Model * Cmd<Msg> = topState, Cmd.none
 
-/// 指定ジャンルのクイズを（問題順・選択肢順ともにシャッフルして）開始する
-let private startQuiz (category: Category) (model: Model) : Model =
+/// 指定ジャンル・難易度のクイズを（問題順・選択肢順ともにシャッフルして）開始する
+let private startQuiz (category: Category) (difficulty: Difficulty) (model: Model) : Model =
     let questions =
-        QuizData.getQuestions category
+        QuizData.getQuestions category difficulty
         |> shuffleQuestions
         |> List.map shuffleOptions
 
     { model with
         Screen = Quiz
         Category = Some category
+        Difficulty = Some difficulty
         Questions = questions
         CurrentIndex = 0
         Score = 0
@@ -127,7 +131,7 @@ let currentQuestion (model: Model) : Question option =
 
 let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     match msg with
-    | StartQuiz category -> startQuiz category model, Cmd.none
+    | StartQuiz(category, difficulty) -> startQuiz category difficulty model, Cmd.none
 
     | SelectAnswer option ->
         // すでに回答済みなら何もしない（他の選択肢を押せないようにする）
@@ -157,9 +161,10 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
             Cmd.none
 
     | RestartQuiz ->
-        match model.Category with
-        | Some category -> startQuiz category model, Cmd.none
-        | None -> topState, Cmd.none
+        // 現在選択中のジャンル・難易度でもう一度
+        match model.Category, model.Difficulty with
+        | Some category, Some difficulty -> startQuiz category difficulty model, Cmd.none
+        | _ -> topState, Cmd.none
 
     | RequestBackToTop -> { model with ShowBackConfirm = true }, Cmd.none
 

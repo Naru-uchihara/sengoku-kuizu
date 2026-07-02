@@ -52,6 +52,44 @@ module Category =
     /// 全ジャンル
     let all = [ Busho; Battle; Castle ]
 
+/// 難易度
+type Difficulty =
+    | Beginner      // 初級
+    | Intermediate  // 中級
+    | Advanced      // 上級
+
+module Difficulty =
+    /// データ格納・保存用のキー（"beginner" / "intermediate" / "advanced"）
+    let toKey =
+        function
+        | Beginner -> "beginner"
+        | Intermediate -> "intermediate"
+        | Advanced -> "advanced"
+
+    /// 画面表示用の難易度名（クイズデータの Difficulty 文字列とも一致）
+    let displayName =
+        function
+        | Beginner -> "初級"
+        | Intermediate -> "中級"
+        | Advanced -> "上級"
+
+    /// 難易度ボタンに添える短い説明
+    let description =
+        function
+        | Beginner -> "まずは有名どころから"
+        | Intermediate -> "戦国好き向け"
+        | Advanced -> "腕試しの難問"
+
+    /// テーマ色を表す CSS クラスの接尾辞
+    let themeClass =
+        function
+        | Beginner -> "beginner"
+        | Intermediate -> "intermediate"
+        | Advanced -> "advanced"
+
+    /// 全難易度
+    let all = [ Beginner; Intermediate; Advanced ]
+
 /// 1問分のクイズ
 type Question =
     { Id: int

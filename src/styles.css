@@ -177,23 +177,32 @@ body {
   max-width: 22em;
 }
 
-/* --- ジャンルボタン（丸いカード） --- */
+/* --- ジャンルカード（丸い意匠 ＋ 難易度ボタン） --- */
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  align-items: center;
+  gap: 30px;
+  align-items: stretch;
   padding: 28px 8px 24px;
 }
 
-.category-button {
+/* 1ジャンル分のまとまり（丸い意匠＋難易度ボタン） */
+.category-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  animation: pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 丸いジャンルの意匠（デザインは従来を維持・非クリック） */
+.category-emblem {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   border: 3px solid var(--gold);
   color: var(--washi);
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -202,13 +211,11 @@ body {
   padding: 18px;
   text-align: center;
   box-shadow: var(--shadow-card);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
-  animation: pop-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   overflow: hidden;
 }
 
 /* 金箔のような内側の光沢 */
-.category-button::after {
+.category-emblem::after {
   content: "";
   position: absolute;
   inset: 8px;
@@ -227,45 +234,87 @@ body {
   background: radial-gradient(circle at 30% 25%, #40794f, var(--sengoku-green) 55%, var(--sengoku-green-deep));
 }
 
-.category-button:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 18px 40px rgba(26, 19, 16, 0.3);
-  filter: brightness(1.06);
-}
-.category-button:active {
-  transform: translateY(-2px) scale(0.96);
-}
-
 .cat-icon {
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   line-height: 1;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
 }
 .cat-title {
   font-family: var(--font-heading);
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
 }
 .cat-desc {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   line-height: 1.5;
   opacity: 0.95;
   max-width: 12em;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
-.cat-count {
-  margin-top: 2px;
+
+/* --- 難易度ボタン --- */
+.difficulty-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.difficulty-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px; /* スマホでも押しやすいタッチ領域 */
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  border: 1.5px solid rgba(201, 162, 39, 0.55);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.12s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+.difficulty-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  filter: brightness(1.04);
+}
+.difficulty-button:active {
+  transform: scale(0.97);
+}
+
+.diff-name {
   font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 1.1rem;
   letter-spacing: 0.08em;
-  padding: 2px 10px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(230, 199, 102, 0.55);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  flex: 0 0 auto;
+  min-width: 2.6em;
+}
+.diff-desc {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* 難易度ごとの色（ジャンル色と喧嘩しないトーン） */
+.diff-beginner {
+  background: linear-gradient(135deg, #f6ecc9, #e9d7a3);
+  color: var(--sumi);
+  border-color: rgba(201, 162, 39, 0.7);
+}
+.diff-intermediate {
+  background: linear-gradient(135deg, #6d5a44, #4a3b2c);
+  color: var(--washi);
+}
+.diff-advanced {
+  background: linear-gradient(135deg, #3a2320, var(--sumi));
+  color: var(--gold-light);
+  border-color: var(--gold);
 }
 
 /* ============================================================
@@ -708,15 +757,19 @@ body {
 @media (min-width: 720px) {
   .app-main { padding: 32px 24px 12px; }
 
+  /* PC：3ジャンルを横並び。各カードの中で難易度ボタンは縦並び */
   .category-list {
     flex-direction: row;
     justify-content: center;
+    align-items: flex-start;
     gap: 28px;
     flex-wrap: wrap;
   }
-  .category-button {
-    width: 200px;
-    height: 200px;
+  .category-block {
+    flex: 0 1 260px;
+  }
+  .difficulty-row {
+    max-width: 260px;
   }
 
   .result-actions {
@@ -728,7 +781,7 @@ body {
 
 /* スマホ小画面の微調整 */
 @media (max-width: 360px) {
-  .category-button { width: 190px; height: 190px; }
+  .category-emblem { width: 180px; height: 180px; }
   .cat-title { font-size: 1.6rem; }
   .score-item { min-width: 104px; padding: 12px 12px; }
 }
