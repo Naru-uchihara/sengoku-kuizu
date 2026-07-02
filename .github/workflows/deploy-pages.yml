@@ -49,10 +49,9 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
+        # 事前に Settings → Pages → Source を「GitHub Actions」に設定しておくこと
+        # （トークンによる自動有効化は権限の都合で不可のため、1回だけ手動設定が必要）
         uses: actions/configure-pages@v5
-        with:
-          # public リポジトリなら Pages 未設定でも Actions から自動有効化できる
-          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
