@@ -62,18 +62,25 @@ let shuffleQuestions (questions: Question list) : Question list = shuffle questi
 let shuffleOptions (question: Question) : Question =
     { question with Options = shuffle question.Options }
 
-/// 正解数からランク（称号とコメント）を判定する
-let calculateRank (score: int) : Rank =
-    if score >= 18 then
+/// 正答率（%）を計算する（0〜100 の整数）
+let calculatePercentage (score: int) (total: int) : int =
+    if total = 0 then 0
+    else int (System.Math.Round(float score / float total * 100.0))
+
+/// 正答率（%）ベースでランク（称号とコメント）を判定する
+/// 問題数が何問でも（50問でも20問でも）同じ基準で判定できます。
+let calculateRank (score: int) (total: int) : Rank =
+    let pct = calculatePercentage score total
+    if pct >= 90 then
         { Title = "天下人"
           Comment = "見事。戦国の世を統べる知識量です。" }
-    elif score >= 15 then
+    elif pct >= 75 then
         { Title = "大名級"
           Comment = "かなりの実力者。あと一歩で天下人です。" }
-    elif score >= 10 then
+    elif pct >= 50 then
         { Title = "侍大将"
           Comment = "基礎知識は十分。さらに深掘りしましょう。" }
-    elif score >= 5 then
+    elif pct >= 25 then
         { Title = "足軽"
           Comment = "まだ伸びしろがあります。戦国の沼へようこそ。" }
     else

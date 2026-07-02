@@ -44,6 +44,10 @@ let categoryButton (index: int) (category: Category) (dispatch: Msg -> unit) : R
             Html.span [ prop.className "cat-icon"; prop.text (Category.icon category) ]
             Html.span [ prop.className "cat-title"; prop.text (Category.displayName category) ]
             Html.span [ prop.className "cat-desc"; prop.text (Category.description category) ]
+            Html.span [
+                prop.className "cat-count"
+                prop.text (sprintf "全%d問" (QuizData.questionCount category))
+            ]
         ]
     ]
 
@@ -273,10 +277,8 @@ let resultScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
         model.Category |> Option.map Category.displayName |> Option.defaultValue ""
 
     let total = List.length model.Questions
-    let rank = calculateRank model.Score
-    let pct =
-        if total = 0 then 0
-        else int (System.Math.Round(float model.Score / float total * 100.0))
+    let rank = calculateRank model.Score total
+    let pct = calculatePercentage model.Score total
 
     Html.div [
         prop.className "screen result-screen"
