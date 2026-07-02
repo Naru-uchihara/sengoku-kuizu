@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <!-- Fable のみで利用するため、.NET 側のビルド出力は無効化 -->
+    <DisableImplicitFSharpCoreReference>false</DisableImplicitFSharpCoreReference>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ドメイン型・状態 -->
+    <Compile Include="Types.fs" />
+    <!-- クイズデータ（ここを編集すれば問題を追加・修正できます） -->
+    <Compile Include="QuizData.fs" />
+    <!-- 状態管理（Elmish の init / update / ロジック） -->
+    <Compile Include="State.fs" />
+    <!-- 画面・コンポーネント（View） -->
+    <Compile Include="View.fs" />
+    <!-- エントリポイント -->
+    <Compile Include="App.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Fable.Core" Version="4.5.0" />
+    <PackageReference Include="Feliz" Version="3.3.3" />
+    <PackageReference Include="Fable.Elmish" Version="4.2.0" />
+    <PackageReference Include="Fable.Elmish.React" Version="5.6.0" />
+  </ItemGroup>
+
+</Project>
