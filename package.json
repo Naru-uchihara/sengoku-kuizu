@@ -1,0 +1,20 @@
+{
+  "name": "sengoku-kuizu",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "戦国クイズ絵巻 - 戦国武将・合戦・城クイズゲーム (Fable 5 + Elmish)",
+  "scripts": {
+    "start": "dotnet fable watch src --run vite",
+    "build": "dotnet fable src --run vite build",
+    "clean": "dotnet fable clean src --yes",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

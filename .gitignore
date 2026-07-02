@@ -1,0 +1,16 @@
+# Node
+node_modules/
+dist/
+
+# Fable の出力（.fs → .js）
+*.fs.js
+.fable/
+fable_modules/
+
+# .NET
+bin/
+obj/
+
+# OS / editor
+.DS_Store
+*.log
