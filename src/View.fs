@@ -71,9 +71,51 @@ let categoryCard (index: int) (category: Category) (dispatch: Msg -> unit) : Rea
     ]
 
 // ------------------------------------------------------------
+//  ResumeBanner（前回の途中クイズを再開するか尋ねる）
+// ------------------------------------------------------------
+let private resumeBanner (saved: Persistence.SavedProgress) (dispatch: Msg -> unit) : ReactElement =
+    // 保存キーから日本語のコース名を組み立てる（不正でも安全に空文字）
+    let categoryName =
+        Category.ofKey saved.category |> Option.map Category.displayName |> Option.defaultValue ""
+    let difficultyName =
+        Difficulty.ofKey saved.difficulty |> Option.map Difficulty.displayName |> Option.defaultValue ""
+    let total =
+        if isNull (box saved.questions) then 0 else saved.questions.Length
+    let position = min (saved.currentIndex + 1) (max total 1)
+
+    Html.div [
+        prop.className "resume-banner"
+        prop.children [
+            Html.p [
+                prop.className "resume-text"
+                prop.text "前回のクイズが途中です。続きから再開しますか？"
+            ]
+            Html.p [
+                prop.className "resume-sub"
+                prop.text $"{categoryName}クイズ｜{difficultyName}　{position} / {total} 問目　（正解 {saved.score}）"
+            ]
+            Html.div [
+                prop.className "resume-actions"
+                prop.children [
+                    Html.button [
+                        prop.className "btn btn-primary"
+                        prop.onClick (fun _ -> dispatch ResumeQuiz)
+                        prop.text "続きから再開"
+                    ]
+                    Html.button [
+                        prop.className "btn btn-ghost"
+                        prop.onClick (fun _ -> dispatch DiscardProgress)
+                        prop.text "最初からやり直す"
+                    ]
+                ]
+            ]
+        ]
+    ]
+
+// ------------------------------------------------------------
 //  TopScreen（トップ画面）
 // ------------------------------------------------------------
-let topScreen (dispatch: Msg -> unit) : ReactElement =
+let topScreen (model: Model) (dispatch: Msg -> unit) : ReactElement =
     Html.div [
         prop.className "screen top-screen"
         prop.children [
@@ -88,6 +130,10 @@ let topScreen (dispatch: Msg -> unit) : ReactElement =
                     ]
                 ]
             ]
+            // 途中保存があれば再開バナーを表示
+            match model.Saved with
+            | Some saved -> resumeBanner saved dispatch
+            | None -> Html.none
             Html.div [
                 prop.className "category-list"
                 prop.children (Category.all |> List.mapi (fun i c -> categoryCard i c dispatch))
@@ -379,7 +425,7 @@ let view (model: Model) (dispatch: Msg -> unit) : ReactElement =
                 prop.className "app-main"
                 prop.children [
                     match model.Screen with
-                    | Top -> topScreen dispatch
+                    | Top -> topScreen model dispatch
                     | Quiz -> quizScreen model dispatch
                     | Result -> resultScreen model dispatch
                 ]

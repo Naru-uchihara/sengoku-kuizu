@@ -52,6 +52,14 @@ module Category =
     /// 全ジャンル
     let all = [ Busho; Battle; Castle ]
 
+    /// 保存キー文字列からジャンルを復元する（不正なら None）
+    let ofKey =
+        function
+        | "busho" -> Some Busho
+        | "battle" -> Some Battle
+        | "castle" -> Some Castle
+        | _ -> None
+
 /// 難易度
 type Difficulty =
     | Beginner      // 初級
@@ -89,6 +97,14 @@ module Difficulty =
 
     /// 全難易度
     let all = [ Beginner; Intermediate; Advanced ]
+
+    /// 保存キー文字列から難易度を復元する（不正なら None）
+    let ofKey =
+        function
+        | "beginner" -> Some Beginner
+        | "intermediate" -> Some Intermediate
+        | "advanced" -> Some Advanced
+        | _ -> None
 
 /// 1問分のクイズ
 type Question =
