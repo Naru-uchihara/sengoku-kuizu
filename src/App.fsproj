@@ -12,6 +12,8 @@
     <Compile Include="Types.fs" />
     <!-- クイズデータ（ここを編集すれば問題を追加・修正できます） -->
     <Compile Include="QuizData.fs" />
+    <!-- 途中保存の永続化（localStorage） -->
+    <Compile Include="Persistence.fs" />
     <!-- 状態管理（Elmish の init / update / ロジック） -->
     <Compile Include="State.fs" />
     <!-- 画面・コンポーネント（View） -->

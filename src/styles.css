@@ -177,6 +177,42 @@ body {
   max-width: 22em;
 }
 
+/* --- 途中保存の再開バナー --- */
+.resume-banner {
+  margin: 8px auto 0;
+  max-width: 460px;
+  background: var(--paper-card);
+  border: var(--border-gold);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 18px 18px 16px;
+  text-align: center;
+  animation: fade-in 0.4s ease both;
+}
+.resume-text {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.7;
+  margin: 0 0 4px;
+  color: var(--sumi);
+}
+.resume-sub {
+  font-size: 0.82rem;
+  color: var(--sumi-soft);
+  margin: 0 0 14px;
+}
+.resume-actions {
+  display: flex;
+  gap: 10px;
+}
+.resume-actions .btn {
+  flex: 1;
+  min-height: 48px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+}
+
 /* --- ジャンルカード（丸い意匠 ＋ 難易度ボタン） --- */
 .category-list {
   display: flex;

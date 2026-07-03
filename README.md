@@ -45,6 +45,7 @@ sengoku-kuizu/
    ├─ App.fsproj       … Fableプロジェクト定義（ファイルのコンパイル順・依存パッケージ）
    ├─ Types.fs         … ★ドメイン型（Category / Question / Screen / Rank）
    ├─ QuizData.fs      … ★★クイズデータ本体（180問）と取得関数 getQuestions / 検証関数 validateQuizData
+   ├─ Persistence.fs   … ★途中保存の永続化（localStorage 版：保存/読込/削除/検証）
    ├─ State.fs         … ★状態管理（Elmishの Model / Msg / update とロジック）
    ├─ View.fs          … ★画面・コンポーネント（TopScreen / QuizScreen / ResultScreen 等）
    ├─ App.fs           … エントリポイント（Elmish と React の接続）
@@ -152,6 +153,27 @@ sengoku-kuizu/
 `QuizData.validateQuizData` が、起動時にブラウザのコンソールへ検証結果を出力します
 （9コース各20問か・選択肢が4つか・answer が options に含まれるか・id/問題文の重複がないか）。
 本番表示には影響しません。開発者ツールのコンソールで確認できます。
+
+---
+
+## 途中保存・復元（localStorage）
+
+クイズの途中でページを閉じたり、トップに戻っても、**同じ端末・同じブラウザなら続きから再開**できます。
+DB は使わず、ブラウザの `localStorage`（キー：`sengoku_quiz_progress`）に保存します。
+
+- **保存する内容**：ジャンル／難易度／問題番号／スコア／回答済みの選択肢／正誤履歴／
+  シャッフル後の問題順・選択肢順／開始日時／最終更新日時。
+- **保存タイミング**：①クイズ開始 ②回答選択 ③次の問題へ ④トップに戻る前 ⑤ページを閉じる/リロード前。
+- **復元**：起動時に未完了データがあれば、トップに「前回のクイズが途中です。続きから再開しますか？」
+  のバナーと **［続きから再開］／［最初からやり直す］** を表示します。
+- **完了時**：20問終了して結果画面に到達したら、途中保存データを削除します
+  （`clearCurrentQuizProgress`。将来のスコア履歴保存に備えて関数化しています）。
+- **安全性**：保存データが壊れている（`JSON.parse` 失敗・形式不正）場合は、安全に削除してトップを表示します。
+
+実装は `src/Persistence.fs`（永続化レイヤー）と `src/State.fs`（保存/復元ロジック）に分離しています。
+主な関数：`saveQuizProgress` / `loadQuizProgress` / `clearQuizProgress` / `hasSavedProgress` /
+`validateSavedProgress`（`Persistence.fs`）、`saveProgress` / `resumeFrom`（`State.fs`）。
+将来 DB（Supabase / Firebase 等）へ移す場合は、`Persistence.fs` の保存/読込の中身だけ差し替えれば済みます。
 
 ---
 
